@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "tsion-azure-datafactory"
+		},
+		"LSadls_accountKey": {
+			"value": ""
+		},
+		"Sftp_LS_password": {
+			"value": ""
+		},
+		"AzureKeyVault_LS_properties_typeProperties_baseUrl": {
+			"value": "https://MYProjectKey1Vault18.vault.azure.net/"
+		},
+		"LSAzureSqlDB_properties_typeProperties_server": {
+			"value": "tsionazuresql.database.windows.net"
+		},
+		"LSAzureSqlDB_properties_typeProperties_database": {
+			"value": "tsionazuresqldatabase"
+		},
+		"LSAzureSqlDB_properties_typeProperties_userName": {
+			"value": "tsion.abebe"
+		},
+		"LSadls_properties_typeProperties_url": {
+			"value": "https://tsion2storageaccountalds.dfs.core.windows.net/"
+		},
+		"Rest_LS_properties_typeProperties_url": {
+			"value": "https://restcountries.com/v3.1/all"
+		},
+		"Sftp_LS_properties_typeProperties_host": {
+			"value": "test.rebex.net"
+		},
+		"Sftp_LS_properties_typeProperties_userName": {
+			"value": "demo"
+		},
+		"Storage Eevents trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/71bd31d7-a98e-45af-b69d-fbdbca9d938b/resourceGroups/Myproject_Tsion/providers/Microsoft.Storage/storageAccounts/tsionstorageaccountadls"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

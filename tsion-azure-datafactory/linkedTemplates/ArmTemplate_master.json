@@ -1,0 +1,139 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "tsion-azure-datafactory"
+		},
+		"LSadls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LSadls'"
+		},
+		"Sftp_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Sftp_LS'"
+		},
+		"AzureKeyVault_LS_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://MYProjectKey1Vault18.vault.azure.net/"
+		},
+		"LSAzureSqlDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "tsionazuresql.database.windows.net"
+		},
+		"LSAzureSqlDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "tsionazuresqldatabase"
+		},
+		"LSAzureSqlDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tsion.abebe"
+		},
+		"LSadls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://tsion2storageaccountalds.dfs.core.windows.net/"
+		},
+		"Rest_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://restcountries.com/v3.1/all"
+		},
+		"Sftp_LS_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "test.rebex.net"
+		},
+		"Sftp_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "demo"
+		},
+		"Storage Eevents trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/71bd31d7-a98e-45af-b69d-fbdbca9d938b/resourceGroups/Myproject_Tsion/providers/Microsoft.Storage/storageAccounts/tsionstorageaccountadls"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "tsion-azure-datafactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LSadls_accountKey": {
+						"value": "[parameters('LSadls_accountKey')]"
+					},
+					"Sftp_LS_password": {
+						"value": "[parameters('Sftp_LS_password')]"
+					},
+					"AzureKeyVault_LS_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_LS_properties_typeProperties_baseUrl')]"
+					},
+					"LSadls_properties_typeProperties_url": {
+						"value": "[parameters('LSadls_properties_typeProperties_url')]"
+					},
+					"Rest_LS_properties_typeProperties_url": {
+						"value": "[parameters('Rest_LS_properties_typeProperties_url')]"
+					},
+					"Sftp_LS_properties_typeProperties_host": {
+						"value": "[parameters('Sftp_LS_properties_typeProperties_host')]"
+					},
+					"Sftp_LS_properties_typeProperties_userName": {
+						"value": "[parameters('Sftp_LS_properties_typeProperties_userName')]"
+					},
+					"LSAzureSqlDB_properties_typeProperties_server": {
+						"value": "[parameters('LSAzureSqlDB_properties_typeProperties_server')]"
+					},
+					"LSAzureSqlDB_properties_typeProperties_database": {
+						"value": "[parameters('LSAzureSqlDB_properties_typeProperties_database')]"
+					},
+					"LSAzureSqlDB_properties_typeProperties_userName": {
+						"value": "[parameters('LSAzureSqlDB_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "tsion-azure-datafactory_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Storage Eevents trigger_properties_typeProperties_scope": {
+						"value": "[parameters('Storage Eevents trigger_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'tsion-azure-datafactory_ArmTemplate_0')]"
+			]
+		}
+	]
+}
