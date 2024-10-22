@@ -1,0 +1,19 @@
+{
+	"name": "Sftp_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sftp_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "mime-explorer.png",
+				"folderPath": "/pub/example"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

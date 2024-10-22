@@ -1,0 +1,31 @@
+{
+	"name": "Schedule_-Trigger",
+	"properties": {
+		"description": "run the pipeline at scheduled time",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Rest_API",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "Data_Ingestion2",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2024-10-05T08:37:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

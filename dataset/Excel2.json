@@ -1,0 +1,26 @@
+{
+	"name": "Excel2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSadls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Book1.xlsx",
+				"folderPath": "fiserv",
+				"fileSystem": "ods"
+			}
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

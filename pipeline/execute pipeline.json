@@ -1,0 +1,49 @@
+{
+	"name": "execute pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "cehck records 500",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Check records greater than 500",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "load multiple tables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "cehck records 500",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Load_-multiple_Tables",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-10-21T14:48:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

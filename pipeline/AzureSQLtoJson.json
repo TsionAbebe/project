@@ -1,0 +1,81 @@
+{
+	"name": "AzureSQLtoJson",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DSazureSQLDB",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DSjson",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "send alert",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-14.northcentralus.logic.azure.com:443/workflows/de5545d008b44acc8ecc40f74f729862/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Oe6VAGwOmQbCtaxUWHBYgtcx2DR9KM73JjlhktABSIc",
+					"body": {
+						"PipelineName": "AzureSQLJson",
+						"Status": "True",
+						"Toaddress": "zelekezion@gmail.com"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-10-21T14:48:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

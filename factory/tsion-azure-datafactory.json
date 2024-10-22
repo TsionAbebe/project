@@ -1,0 +1,9 @@
+{
+	"name": "tsion-azure-datafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "16f88db0-9b7d-4a1f-8aed-249c37f6cd21",
+		"tenantId": "6690a44b-688a-41d1-bf78-9da32f3ed0d9"
+	}
+}

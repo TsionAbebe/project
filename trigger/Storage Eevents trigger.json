@@ -1,0 +1,25 @@
+{
+	"name": "Storage Eevents trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Data_ingestion",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/raw/blobs/import/",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/71bd31d7-a98e-45af-b69d-fbdbca9d938b/resourceGroups/Myproject_Tsion/providers/Microsoft.Storage/storageAccounts/tsionstorageaccountadls",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
